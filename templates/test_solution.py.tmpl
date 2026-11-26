@@ -1,0 +1,13 @@
+import pytest
+
+
+@pytest.mark.skip(reason="TODO: add the statement's examples and your own edge cases")
+@pytest.mark.parametrize(
+    "data, expected",
+    [
+        # ("input as text\n", "expected output\n"),
+    ],
+)
+def test_examples(load_solution, data, expected):
+    solution = load_solution(__file__)
+    assert solution.solve(data) == expected

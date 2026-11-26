@@ -1,0 +1,28 @@
+#define NO_MAIN
+#include "solution.cpp"
+
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+static int failures = 0;
+
+static void check(const std::string& input, const std::string& expected) {
+    std::istringstream in(input);
+    std::ostringstream out;
+    solve(in, out);
+    if (out.str() != expected) {
+        std::cerr << "FAIL\n  input:    " << input
+                  << "  expected: " << expected
+                  << "  actual:   " << out.str();
+        ++failures;
+    }
+}
+
+int main() {
+    // check("input\n", "expected\n");
+    // TODO: add the statement's examples and your own edge cases.
+    (void)check;
+    return failures == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+}
