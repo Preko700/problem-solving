@@ -84,3 +84,28 @@ def test_index_is_generated_and_checked(tmp_path):
 
 def test_unclosed_front_matter_is_ignored():
     assert build_index.parse_front_matter("---\ntitle: x\n") == {}
+
+
+def test_render_index_with_no_entries():
+    assert build_index.render_index([]) == "_No problems solved yet._"
+
+
+def test_render_index_handles_missing_optional_metadata_and_pipes():
+    rendered = build_index.render_index(
+        [{"title": "A | B", "platform": "cses", "path": "problems/cses/a-b"}]
+    )
+
+    assert "**1 problems** - 0 easy, 0 medium, 0 hard" in rendered
+    assert "| [A \\| B](problems/cses/a-b/) | cses |  |  |  |" in rendered
+
+
+@pytest.mark.parametrize(
+    "content",
+    ["README without markers", "<!-- INDEX:START -->\nREADME without end marker"],
+)
+def test_update_readme_rejects_missing_index_markers(tmp_path, content):
+    readme = tmp_path / "README.md"
+    readme.write_text(content, encoding="utf-8")
+
+    assert build_index.update_readme(tmp_path) == 2
+    assert readme.read_text(encoding="utf-8") == content
