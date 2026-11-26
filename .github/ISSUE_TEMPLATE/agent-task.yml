@@ -1,0 +1,26 @@
+name: Agent task
+description: A small, well-scoped task to assign to the Copilot coding agent
+labels: ["copilot"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should change, in one or two sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How I will check it. Tests that must pass, files that must exist.
+      placeholder: |
+        - [ ] pytest passes
+        - [ ] index check passes
+    validations:
+      required: true
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: What the agent must not touch.
