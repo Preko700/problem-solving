@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# C++ / CMake
+build/
+cmake-build-*/
+*.exe
+*.o
+*.obj
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Puzzle inputs are personal and must not be redistributed
+**/input.txt
+**/input*.txt
+**/inputs/
